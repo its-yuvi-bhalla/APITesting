@@ -8,6 +8,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      CYPRESS_API_KEY: ${{ secrets.CYPRESS_API_KEY }}
+      EMAIL: ${{ secrets.EMAIL }}
+      USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+      
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4

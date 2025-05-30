@@ -23,3 +23,10 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+//login commands
+import "../commands/login/post-user-login-api-request"
+
+//user commands
+import "../commands/users/post-create-user-api-request"
+import "../commands/users/delete-user-api-request"

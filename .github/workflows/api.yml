@@ -3,7 +3,7 @@ name: API testing suite
 on:
     push:
         branches:
-          - main
+          - master
 
 jobs:
   test:

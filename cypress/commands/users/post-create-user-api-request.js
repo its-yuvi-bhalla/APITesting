@@ -19,14 +19,14 @@ cy.request({
     headers: {
         "x-api-key":`${Cypress.env('apiKey')}`
     },
-    url:`${Cypress.env('baseUrl')}/api/register`,
+    url:`${Cypress.env('baseUrl')}/api/users`,
     body:{
-        email:userDetails.email,
-        password:userDetails.password
+        name:userDetails.name,
+        job:userDetails.job
     }
 }).then((res)=>{
     console.log(`Response of postCreateUsersApiRequest`,res)
-    expect(res.status).to.eq(200)
+    expect(res.status).to.eq(201)
     return res.body
 })
 })

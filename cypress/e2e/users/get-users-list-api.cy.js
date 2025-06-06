@@ -39,7 +39,7 @@ it('get user',()=>{
     cy.getUsersListApiRequest(page).then(($response)=>{
           const names = $response.data.map(name => name.first_name)
         expect(names).to.contain(userCredentials.name.first_name)
-        
+         
     })
 })
 

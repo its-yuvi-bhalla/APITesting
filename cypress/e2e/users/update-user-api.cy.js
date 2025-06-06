@@ -1,10 +1,10 @@
 /**
  * 
  * @description 
- * this spec file contains test to verify that user can be created and deleted through api
+ * this spec file contains test to verify that user can be updated through api
  * 
  * @file 
- * cypress\e2e\users\create-user-api.cy.js
+ * cypress\e2e\users\update-user-api.cy.js
  * 
  * @params
  * - Email
@@ -15,7 +15,7 @@
  * 
  * @assertions
  * - User Login is successful
- * - Auth Token is generated
+ * - User is edited and present in Database
  */
 let userID
 describe('Verify that user can login with valid credentials', () => {
@@ -28,25 +28,33 @@ const userCredentials = {
 const userDetails = {
     name:`qa-auto-user-name${Cypress.dayjs().format('ssmmHHYY')}`,
     job:`qa-auto-job${Cypress.dayjs().format('ssmmHHYY')}`
-}  
+}
+const updatedUserDetails = {
+    name:`qa-auto-updated-user-name${Cypress.dayjs().format('ssmmHHYY')}`,
+    job:`qa-auto-updated-job${Cypress.dayjs().format('ssmmHHYY')}`
+} 
 const token = Cypress.env('token')
 
 beforeEach('log in with valid credentials', ()=>{
     cy.postUserLoginApiRequest(userCredentials).then(($response)=>{
         expect($response.token).to.eq(token)
     })
-})
-
-it('Create a new user',()=>{
     cy.postCreateUsersApiRequest(userDetails).then(($response)=>{
         expect($response.name).to.eq(userDetails.name)
         expect($response.job).to.eq(userDetails.job)
         expect($response.id).to.exist
-        userID = $response.id
+        updatedUserDetails.userID = $response.id
     }) 
 })
 
+it('Update a new user',()=>{
+    cy.patchUpdateUserApiRequest(updatedUserDetails).then(($response)=>{
+        expect($response.name).to.eq(updatedUserDetails.name)
+        expect($response.job).to.eq(updatedUserDetails.job)
+    })
+})
+
 afterEach('Deleting User',()=>{
-    cy.deleteUserApiRequest(userID)
+    cy.deleteUserApiRequest(updatedUserDetails.userID)
 })
 })

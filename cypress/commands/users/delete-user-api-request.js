@@ -19,7 +19,7 @@ cy.request({
     headers: {
         "x-api-key":`${Cypress.env('apiKey')}`
     },
-    url:`${Cypress.env('baseUrl')}/api/${UserID}`,
+    url:`${Cypress.env('baseUrl')}/api/users/${UserID}`,
 }).then((res)=>{
     console.log(`Response of deleteUserApiRequest`,res)
     expect(res.status).to.eq(204)

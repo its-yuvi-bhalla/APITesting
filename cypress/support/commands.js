@@ -30,3 +30,6 @@ import "../commands/login/post-user-login-api-request"
 //user commands
 import "../commands/users/post-create-user-api-request"
 import "../commands/users/delete-user-api-request"
+import "../commands/users/patch-update-user-api-request"
+import "../commands/users/get-user-api-request"
+import "../commands/users/get-users-list-api-request"
